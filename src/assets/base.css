@@ -1,0 +1,45 @@
+:root {
+  /* COLORS */
+  --color-primary: #606c38;
+  --color-primary-darken: #283618;
+
+  --color-neutral: #fefae0;
+
+  --color-secondary: #dda15e;
+  --color-secondary-darken: #bc6c25;
+
+  --main-dark: #151f2a;
+  --main-light: #404d5c;
+  --main-gray: #727f8f;
+
+  --gray-1: #f5faff;
+  --gray-2: #d5dde5;
+  --gray-3: #b8c1cc;
+  --gray-4: #9ba6b2;
+
+  --background-color: var(--gray-1);
+
+  --primary-padding: 16px;
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-background: var(--background-color);
+
+  --color-text: var(--color-primary);
+
+  --section-gap: 160px;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
