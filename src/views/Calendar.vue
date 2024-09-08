@@ -38,6 +38,8 @@ import CalendarWeekdays from '@/components/CalendarWeekdays.vue'
 import CalendarMonthDayItem from '@/components/CalendarMonthDayItem.vue'
 import CustomDialog from '@/components/CustomDialog.vue'
 
+import { getDaysToPrint } from '@/utils/Calendar.utils'
+
 const showDialogEvent = ref(false)
 
 const dayjs = inject('dayJS')
@@ -45,40 +47,9 @@ const dayjs = inject('dayJS')
 const selectedDate = ref(dayjs())
 const selectedEventId = ref<number | undefined>(undefined)
 
-const events = ref<Array<Event>>([{ date: dayjs(), title: 'Event 1' }])
+const events = ref<Array<Event>>([{ date: dayjs(), title: 'Event 1', id: 1 }])
 
-const previousMonthDaysToPrint = computed(() => {
-  const offset = selectedDate.value.startOf('month').isoWeekday() - 1
-  console.log('previousMonthoffset', offset, selectedDate.value.format())
-  const previousMonthDays = selectedDate.value.subtract(1, 'month').daysInMonth()
-
-  const startDay = previousMonthDays - offset + 1
-  const returnArray = []
-  for (let i = startDay; i <= previousMonthDays; i++) {
-    returnArray.push(dayjs(selectedDate.value).subtract(1, 'month').date(i))
-  }
-  return returnArray
-})
-
-const currentMonthDaysToPrint = computed(() => {
-  const returnArray = []
-  for (let i = 1; i <= selectedDate.value.daysInMonth(); i++) {
-    returnArray.push(dayjs(selectedDate.value).date(i))
-  }
-  return returnArray
-})
-
-const nextMonthDaysToPrint = computed(() => {
-  const offset = selectedDate.value.endOf('month').isoWeekday()
-  console.log('nexctmonth days', offset, selectedDate.value)
-  const returnArray = []
-  for (let i = 1; i <= 7 - offset; i++) {
-    returnArray.push(dayjs(selectedDate.value).add(1, 'month').date(i))
-  }
-  return returnArray
-})
-
-const selectedEvent = computed({
+const selectedEvent = computed<Event>({
   get() {
     return events.value.find((event) => event.id === selectedEventId.value)
   },
@@ -93,11 +64,7 @@ const selectedEvent = computed({
 })
 
 const daysToPrint = computed(() => {
-  return [
-    ...previousMonthDaysToPrint.value,
-    ...currentMonthDaysToPrint.value,
-    ...nextMonthDaysToPrint.value
-  ]
+  return getDaysToPrint(selectedDate.value)
 })
 
 function addEvent(date: Date) {
@@ -105,12 +72,6 @@ function addEvent(date: Date) {
   events.value.push(newEvent)
   selectedEventId.value = newEvent.id
   showDialogEvent.value = true
-}
-
-function modifyEventTitle(title: string) {
-  console.log('title', title)
-  const index = events.value.findIndex((event) => event.id === selectedEvent.value?.id)
-  events.value[index].title = title
 }
 
 function getEventsForDay(date: Date): Array<Event> {
