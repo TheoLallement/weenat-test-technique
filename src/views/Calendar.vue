@@ -87,7 +87,6 @@ function focusInput() {
     const input = document.getElementById(
       'calendar-month__dialog-evenement__input'
     ) as HTMLInputElement
-    console.log(input)
     input?.focus()
     input?.select()
   }, 1)

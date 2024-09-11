@@ -18,7 +18,7 @@ import { defineModel, inject } from 'vue'
 
 const dayjs = inject('dayJS')
 
-const model = defineModel('model', { type: String, default: '' })
+const model = defineModel()
 
 function selectPrevious() {
   model.value = dayjs(model.value).subtract(1, 'month')
@@ -29,7 +29,6 @@ function selectNext() {
 }
 
 function formatInput(event) {
-  console.log(event)
   model.value = dayjs(event.target.value, 'YYYY-MM').add(1, 'day')
 }
 </script>

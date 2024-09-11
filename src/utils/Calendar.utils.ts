@@ -14,7 +14,6 @@ export function getPreviousMonthDaysToPrint(date: Dayjs) {
 
 export function getNextMonthDaysToPrint(date: Dayjs) {
   const offset = date.endOf('month').isoWeekday()
-  console.log('nexctmonth days', offset, date)
   const returnArray = []
   for (let i = 1; i <= 7 - offset; i++) {
     returnArray.push(dayjs(date).add(1, 'month').date(i))
