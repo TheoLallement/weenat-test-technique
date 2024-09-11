@@ -18,7 +18,7 @@ import { defineModel, inject } from 'vue'
 
 const dayjs = inject('dayJS')
 
-const model = defineModel({ type: String, defaultValue: '' })
+const model = defineModel('model', { type: String, default: '' })
 
 function selectPrevious() {
   model.value = dayjs(model.value).subtract(1, 'month')

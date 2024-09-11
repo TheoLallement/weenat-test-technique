@@ -3,26 +3,29 @@
 Test technique, disponible sur une GithubPage [ici](https://theolallement.github.io/weenat-test-technique/)
 |
 
-### Choix d'implémentation
+### Fonctionnalités
 
-- **gitmoji :** alternative au conventionnal commit avec des emojis
-- **Déploiement :** github page car permet de montrer un exemple de Github Actions
-- **Accessibilité :** Travail basique au niveau de l'accessibilité (tabulation, role, aria-label, etc.), surement possibilité d'améliorer mais étant précisé que l'UI était peu important, pas de travail supplémentaire
-- **Utilisation de composants HTML natifs :** form, button (submit et reset),
-  dialog; Choix de rester sur de l'HTML classique pour simplifier la gestion des évènements et erreurs, dans un projet plus conséquent chaque élément aurait été repris pour etre 100% customisé
+Cette application montre un exemple de calendrier à affichage mensuel avec une gestion d'évènements basiques.
 
-### Difficultés rencontrées
+- changement de mois et d'années avec un input natif afin d'etre accessible sur tous les appareils
+- ajout d'un évènement au click sur un jour
+- modification du titre de l'évènement lors d'un click sur un évènement
+- suppression d'un évènement au click sur le bouton de suppression
 
-- **gestion de l'édition/addition d'un article sur le meme article :**
-  Difficulté sur la gestion de la réactivité et du data flow afin de conserver la réactivité sans trop alourdir le code
+### Idées d'améliorations possibles
 
-### Améliorations possibles
+Fonctionel :
 
-- **CSS :** différents points possible pour améliorer le code et l'interface
-  - retravail des variables css pour séparer fonctionnellement les variables (couleurs et fonction par exemple)
-  - création d'utilitaire pour gérer et uniformiser espacements / largeur d'éléments (façon grille bootstrap par exemple)
-- **CICD :** ajout de la gestion d'une release et release note ([gitmoji-changelog](https://github.com/frinyvonnick/gitmoji-changelog) par exemple)
-- **UX :** ajout d'une "vraie" validation de formulaire avec des messages d'erreurs au niveau des inputs (avec [aync-validator](https://github.com/yiminghe/async-validator) par exemple)
+- Gestion de plusieurs calendriers (couleurs différentes pour chaque évènement)
+- Dialog pour la confirmation de suppression
+- Gestion des heures sur les évènements et tri en fonction des heures
+- Gestion des évènements sur plusieurs jours
+
+Technique :
+
+- ajout de tests de composants (Cypress ou Playwright par exemple)
+- poussé la séparation Vue/TS plus loin afin de n'avoir aucune référence aux implémentations dans les fichiers .vue (permet de faciliter la migration vers une autre techno par exemple)
+- utilisation du SCSS et définition de styles globales plus complets
 
 ## Lancement du projet en local
 
