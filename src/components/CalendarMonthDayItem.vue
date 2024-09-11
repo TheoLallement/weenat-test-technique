@@ -22,7 +22,7 @@
           class="calendar-month-day-item__event-item__button"
           @click.stop="emit('removeEvent', event)"
         >
-          X
+          x
         </button>
       </li>
     </ol>
@@ -71,7 +71,9 @@ const emit = defineEmits<{
 
 <style scoped>
 .calendar-day {
-  position: relative;
+  overflow: hidden;
+  max-height: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -79,6 +81,7 @@ const emit = defineEmits<{
   color: var(--color-primary);
   padding: 5px;
   font-weight: 700;
+  line-height: normal;
 }
 
 .calendar-month-day-item__header {
@@ -106,26 +109,36 @@ const emit = defineEmits<{
 .calendar-month-day-item_events {
   display: flex;
   flex-direction: column;
-  gap: 0.125rem;
+  gap: 0.5rem;
   font-size: 0.85rem;
-  padding: 0.25rem 0;
-  margin: 0;
+  padding: 0.5rem 0;
   list-style: none;
   overflow-y: auto;
+  max-height: 100%;
+  vertical-align: top;
 }
 
 .calendar-month-day-item__event-item {
   display: flex;
   padding: 0 1rem;
   box-sizing: border-box;
+  border: 1px solid var(--color-primary);
   width: 100%;
   background-color: var(--color-neutral);
   text-overflow: ellipsis;
-  white-space: nowrap;
   border-radius: 1rem;
+  line-height: 1.5rem;
+}
+
+.calendar-month-day-item__event-item:last-child {
+  margin-bottom: 1rem;
 }
 
 .calendar-month-day-item__event-item__button {
+  width: 1.125rem;
+  height: 1.125rem;
+  align-self: center;
+  padding: 0.25rem;
   color: var(--color-primary);
   background: transparent;
   border: 0;

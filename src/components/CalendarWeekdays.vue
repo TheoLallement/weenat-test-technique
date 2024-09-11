@@ -10,7 +10,7 @@
 import { inject } from 'vue'
 
 const dayjs = inject('dayJS')
-const weekdays = dayjs.weekdaysShort(true)
+const weekdays = dayjs.weekdays(true)
 </script>
 
 <style scoped>
@@ -25,7 +25,7 @@ const weekdays = dayjs.weekdaysShort(true)
 }
 
 .day-of-week_label {
-  text-align: right;
+  text-align: center;
   color: var(--color-primary);
   text-transform: capitalize;
 }
