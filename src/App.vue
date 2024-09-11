@@ -3,8 +3,7 @@ import Calendar from '@/views/Calendar.vue'
 </script>
 
 <template>
-  <h2 style="margin: unset">Calendar</h2>
-  <div>
+  <div style="height: 95vh">
     <Calendar />
   </div>
 </template>
